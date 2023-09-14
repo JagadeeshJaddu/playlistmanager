@@ -2,14 +2,17 @@ package com.spotify.playlistmanager.commands;
 
 import java.util.Arrays;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import com.spotify.playlistmanager.controllers.SongController;
 import com.spotify.playlistmanager.dtos.AddSongRequestDTO;
 import com.spotify.playlistmanager.dtos.AddSongResponseDTO;
 
+@Component
 public class AddSongCommand implements Command{
     private SongController songController;
 
+    @Autowired
     public AddSongCommand(SongController songController)
     {
         this.songController = songController;
@@ -19,6 +22,7 @@ public class AddSongCommand implements Command{
         List<String> inputWords = Arrays.stream(input.split(" ")).toList();
         if(inputWords.size()==5 && inputWords.get(0).equalsIgnoreCase(CommandKeyWords.addSong))
         {
+            System.out.println(CommandKeyWords.addSong);
             return true;
         }
         return false;
@@ -43,6 +47,7 @@ public class AddSongCommand implements Command{
         AddSongResponseDTO addSongResponseDTO = songController.addSong(addSongRequestDTO);
 
         System.out.println(addSongResponseDTO.getStatus());
+        return;
     }
     
 }

@@ -30,6 +30,7 @@ public class SongController {
         } catch (Exception e) {
             addSongResponseDTO.setStatus("FAILURE");
             addSongResponseDTO.setMessage(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         return addSongResponseDTO;
