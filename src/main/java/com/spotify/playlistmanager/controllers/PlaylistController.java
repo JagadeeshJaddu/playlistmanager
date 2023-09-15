@@ -3,6 +3,8 @@ package com.spotify.playlistmanager.controllers;
 import org.springframework.stereotype.Controller;
 import com.spotify.playlistmanager.dtos.CreatePlaylistRequestDTO;
 import com.spotify.playlistmanager.dtos.CreatePlaylistResponseDTO;
+import com.spotify.playlistmanager.dtos.SongToPlaylistRequestDTO;
+import com.spotify.playlistmanager.dtos.SongToPlaylistResponseDTO;
 import com.spotify.playlistmanager.models.Playlist;
 import com.spotify.playlistmanager.services.PlaylistService;
 
@@ -31,5 +33,25 @@ public class PlaylistController {
             createPlaylistResponseDTO.setMessage(e.getMessage());
         }
         return createPlaylistResponseDTO;
+    }
+
+    public SongToPlaylistResponseDTO addSongToPlayList(SongToPlaylistRequestDTO songToPlaylistRequestDTO)
+    {
+        Playlist playlist;
+        Long playlistId = songToPlaylistRequestDTO.getPlaylistId();
+        Long songId = songToPlaylistRequestDTO.getSongId();
+        SongToPlaylistResponseDTO songToPlaylistResponseDTO = new SongToPlaylistResponseDTO();
+        try{
+            playlist = playlistService.addSongToPlaylist(playlistId, songId);
+            songToPlaylistResponseDTO.setPlaylistId(playlist.getId());
+            songToPlaylistResponseDTO.setStatus("SUCCESS");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            songToPlaylistResponseDTO.setStatus("FAILURE");
+            songToPlaylistResponseDTO.setMessage(e.getMessage());
+        }
+        return songToPlaylistResponseDTO;
     }
 }

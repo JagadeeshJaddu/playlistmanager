@@ -9,12 +9,14 @@ public class CommandRegistry {
     List<Command> commandList;
 
     public CommandRegistry(AddSongCommand addSongCommand, AddArtistCommand addArtistCommand,
-            AddAlbumCommand addAlbumCommand, CreatePlaylistCommand createPlaylistCommand) {
+            AddAlbumCommand addAlbumCommand, CreatePlaylistCommand createPlaylistCommand,
+            SongToPlaylistCommand songToPlaylistCommand) {
         this.commandList = new ArrayList<>();
         commandList.add(addSongCommand);
         commandList.add(addArtistCommand);
         commandList.add(addAlbumCommand);
         commandList.add(createPlaylistCommand);
+        commandList.add(songToPlaylistCommand);
     }
 
     public void excecute(String input) {
