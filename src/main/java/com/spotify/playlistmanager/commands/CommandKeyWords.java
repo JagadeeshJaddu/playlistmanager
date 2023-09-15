@@ -4,4 +4,5 @@ public interface CommandKeyWords {
     String addSong = "AddSong";
     String addArtist = "AddArtist";
     String addAlbum = "AddAlbum";
+    String createPlaylist = "CreatePlaylist";
 }

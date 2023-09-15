@@ -1,7 +1,6 @@
 package com.spotify.playlistmanager.services;
 
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.spotify.playlistmanager.exceptions.ArtistAlreadyExistException;
 import com.spotify.playlistmanager.models.Artist;
@@ -11,7 +10,6 @@ import com.spotify.playlistmanager.repositories.ArtistRepository;
 public class ArtistService {
     private ArtistRepository artistRepository;
 
-    @Autowired
     public ArtistService(ArtistRepository artistRepository)
     {
         this.artistRepository = artistRepository;

@@ -1,10 +1,7 @@
 package com.spotify.playlistmanager.services;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.spotify.playlistmanager.exceptions.AlbumAlreadyExistException;
 import com.spotify.playlistmanager.exceptions.ArtistDoesNotExistException;
 import com.spotify.playlistmanager.models.Album;
@@ -17,7 +14,6 @@ public class AlbumService {
     private ArtistRepository artistRepository;
     private AlbumRepository albumRepository;
 
-    @Autowired
     public AlbumService(AlbumRepository albumRepository, ArtistRepository artistRepository)
     {
         this.artistRepository = artistRepository;

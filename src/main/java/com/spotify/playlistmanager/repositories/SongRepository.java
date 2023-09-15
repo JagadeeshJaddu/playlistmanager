@@ -12,5 +12,6 @@ public interface SongRepository extends JpaRepository<Song,Long>{
     Optional<Song> findById(Long id);
     Optional<Song> findByName(String name);
     List<Song> findByArtist(Artist artist);
-    Song save(Song song);
+    //Song save(Song song);
+    <S extends Song> S save(S Song);
 }

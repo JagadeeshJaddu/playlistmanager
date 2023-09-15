@@ -2,7 +2,6 @@ package com.spotify.playlistmanager.commands;
 
 import java.util.Arrays;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.spotify.playlistmanager.controllers.AlbumController;
 import com.spotify.playlistmanager.dtos.AddAlbumRequestDTO;
@@ -12,7 +11,6 @@ import com.spotify.playlistmanager.dtos.AddAlbumResponseDTO;
 public class AddAlbumCommand implements Command{
     private AlbumController albumController;
 
-    @Autowired
     public AddAlbumCommand(AlbumController albumController)
     {
         this.albumController = albumController;

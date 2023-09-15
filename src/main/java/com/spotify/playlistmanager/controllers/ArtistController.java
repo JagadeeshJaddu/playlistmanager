@@ -1,6 +1,5 @@
 package com.spotify.playlistmanager.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.spotify.playlistmanager.dtos.AddArtistRequestDTO;
 import com.spotify.playlistmanager.dtos.AddArtistResponseDTO;
@@ -11,7 +10,6 @@ import com.spotify.playlistmanager.services.ArtistService;
 public class ArtistController {
     private ArtistService artistService;
 
-    @Autowired
     public ArtistController(ArtistService artistService)
     {
         this.artistService = artistService;

@@ -2,7 +2,6 @@ package com.spotify.playlistmanager.commands;
 
 import java.util.Arrays;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.spotify.playlistmanager.controllers.SongController;
 import com.spotify.playlistmanager.dtos.AddSongRequestDTO;
@@ -12,7 +11,6 @@ import com.spotify.playlistmanager.dtos.AddSongResponseDTO;
 public class AddSongCommand implements Command{
     private SongController songController;
 
-    @Autowired
     public AddSongCommand(SongController songController)
     {
         this.songController = songController;

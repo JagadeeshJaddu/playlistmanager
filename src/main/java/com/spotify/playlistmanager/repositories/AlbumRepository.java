@@ -9,5 +9,6 @@ import com.spotify.playlistmanager.models.Album;
 public interface AlbumRepository extends JpaRepository<Album,Long>{
     Optional<Album> findById(Long id);
     Optional<Album>  findByName(String name);
-    Album save(Album album);
+    //Album save(Album album);
+    <S extends Album> S save(S Album);
 }

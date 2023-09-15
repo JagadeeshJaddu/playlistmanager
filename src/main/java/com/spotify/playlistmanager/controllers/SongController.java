@@ -1,6 +1,5 @@
 package com.spotify.playlistmanager.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.spotify.playlistmanager.dtos.AddSongRequestDTO;
 import com.spotify.playlistmanager.dtos.AddSongResponseDTO;
@@ -11,7 +10,6 @@ import com.spotify.playlistmanager.services.SongService;
 public class SongController {
     private SongService songService;
 
-    @Autowired
     public SongController(SongService songService) {
         this.songService = songService;
     }
@@ -30,7 +28,7 @@ public class SongController {
         } catch (Exception e) {
             addSongResponseDTO.setStatus("FAILURE");
             addSongResponseDTO.setMessage(e.getMessage());
-            System.out.println(e.getMessage());
+            System.out.println("Exception:"+e.getMessage());
         }
 
         return addSongResponseDTO;

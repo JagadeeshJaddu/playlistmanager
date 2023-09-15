@@ -1,8 +1,6 @@
 package com.spotify.playlistmanager;
 
 import java.util.Scanner;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +13,6 @@ public class PlaylistmanagerApplication implements CommandLineRunner{
 	private Scanner scanner;
 	private CommandRegistry commandRegistry;
 
-	@Autowired
 	public PlaylistmanagerApplication(CommandRegistry commandRegistry)
 	{
 		scanner = new Scanner(System.in);
