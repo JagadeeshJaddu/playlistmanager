@@ -34,7 +34,18 @@ public class PlaylistService {
 
         return playlist;
     }
+    public void removePlaylist(Long playlistId) throws PlaylistDoesNotExistException
+    {
+        Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
+        if(playlistOptional.isEmpty())
+        {
+            throw new PlaylistDoesNotExistException();
+        }
 
+        playlistRepository.deleteById(playlistId);
+
+        return ;
+    }
     public Playlist addSongToPlaylist(Long playlistId, Long songId)
             throws SongDoesNotExistException, PlaylistDoesNotExistException {
         Optional<Song> songOptional = songRepository.findById(songId);

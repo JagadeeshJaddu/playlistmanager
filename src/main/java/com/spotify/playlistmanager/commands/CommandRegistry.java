@@ -10,7 +10,8 @@ public class CommandRegistry {
 
     public CommandRegistry(AddSongCommand addSongCommand, AddArtistCommand addArtistCommand,
             AddAlbumCommand addAlbumCommand, CreatePlaylistCommand createPlaylistCommand,
-            SongToPlaylistCommand songToPlaylistCommand, RemoveSongFromPlaylistCommand removeSongFromPlaylistCommand) {
+            SongToPlaylistCommand songToPlaylistCommand, RemoveSongFromPlaylistCommand removeSongFromPlaylistCommand,
+            RemovePlaylistCommand removePlaylistCommand) {
         this.commandList = new ArrayList<>();
         commandList.add(addSongCommand);
         commandList.add(addArtistCommand);
@@ -18,6 +19,7 @@ public class CommandRegistry {
         commandList.add(createPlaylistCommand);
         commandList.add(songToPlaylistCommand);
         commandList.add(removeSongFromPlaylistCommand);
+        commandList.add(removePlaylistCommand);
     }
 
     public void excecute(String input) {

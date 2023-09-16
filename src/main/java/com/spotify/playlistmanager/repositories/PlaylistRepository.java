@@ -11,4 +11,6 @@ public interface PlaylistRepository extends JpaRepository<Playlist,Long>{
     Optional<Playlist> findByName(String name);
     //Playlist save(Playlist playlist);
     <S extends Playlist> S save(S Playlist);
+
+    void deleteById(Long id);
 }
