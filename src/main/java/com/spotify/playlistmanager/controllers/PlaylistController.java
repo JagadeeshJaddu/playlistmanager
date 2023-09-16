@@ -54,4 +54,23 @@ public class PlaylistController {
         }
         return songToPlaylistResponseDTO;
     }
+
+    public SongToPlaylistResponseDTO removeSongFromPlaylist(SongToPlaylistRequestDTO songToPlaylistRequestDTO)
+    {
+        Playlist playlist;
+        Long playlistId = songToPlaylistRequestDTO.getPlaylistId();
+        Long songId = songToPlaylistRequestDTO.getSongId();
+        SongToPlaylistResponseDTO songToPlaylistResponseDTO = new SongToPlaylistResponseDTO();
+        try{
+            playlist = playlistService.removeSongFromPlaylist(playlistId, songId);
+            songToPlaylistResponseDTO.setPlaylistId(playlist.getId());
+            songToPlaylistResponseDTO.setStatus("SUCCESS");
+        }
+        catch(Exception e)
+        {
+            songToPlaylistResponseDTO.setStatus("FAILURE");
+            songToPlaylistResponseDTO.setMessage(e.getMessage());
+        }
+        return songToPlaylistResponseDTO;
+    }
 }
