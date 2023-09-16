@@ -75,12 +75,6 @@ public class PlaylistService {
         } else {
             throw new SongNotInPlaylistException();
         }
-        /*System.out.println("Before");
-        playlistSongs.stream().map(s -> s.getId()).forEach(System.out::println);
-        //System.out.println(song.getId());
-        playlistSongs = playlistSongs.stream().filter(s -> (s.getId()!=song.getId())).toList();
-        System.out.println("After");
-        playlistSongs.stream().map(s -> s.getId()).forEach(System.out::println);*/
         playlist.setSongs(playlistSongs);
         playlist = playlistRepository.save(playlist);
         return playlist;
