@@ -65,6 +65,7 @@ public class SongService {
         songRepository.deleteById(Id);
         //albumRepository.deleteAllBySongs(song);
         //playlistRepository.deleteAllBySongs(song);
+        //playlistRepository.deleteAllBySongId(song);
         return ;
     }
 }

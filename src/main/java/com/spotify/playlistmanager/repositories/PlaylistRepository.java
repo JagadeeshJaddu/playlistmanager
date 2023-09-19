@@ -15,4 +15,7 @@ public interface PlaylistRepository extends JpaRepository<Playlist,Long>{
     //void deleteAllBySongId(Long songId);
     void deleteById(Long playlistId);
     //void deleteAllBySongs(Song song);
+
+    //@Query("DELETE FROM playlist where songs= ?1")
+    //void deleteAllBySongId(Song song);
 }
