@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import com.spotify.playlistmanager.controllers.PlaylistController;
 import com.spotify.playlistmanager.dtos.CreatePlaylistRequestDTO;
-import com.spotify.playlistmanager.dtos.CreatePlaylistResponseDTO;
+import com.spotify.playlistmanager.dtos.ResponseDTO;
 
 @Component
 public class CreatePlaylistCommand implements Command {
@@ -30,7 +30,7 @@ public class CreatePlaylistCommand implements Command {
         String name = inputWords.get(1);
         CreatePlaylistRequestDTO createPlaylistRequestDTO = new CreatePlaylistRequestDTO();
         createPlaylistRequestDTO.setName(name);
-        CreatePlaylistResponseDTO createPlaylistResponseDTO = playlistController
+        ResponseDTO createPlaylistResponseDTO = playlistController
                 .createPlaylist(createPlaylistRequestDTO);
         System.out.println(createPlaylistResponseDTO.getStatus());
         return;

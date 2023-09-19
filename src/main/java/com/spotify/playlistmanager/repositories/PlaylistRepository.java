@@ -12,5 +12,7 @@ public interface PlaylistRepository extends JpaRepository<Playlist,Long>{
     //Playlist save(Playlist playlist);
     <S extends Playlist> S save(S Playlist);
 
-    void deleteById(Long id);
+    //void deleteAllBySongId(Long songId);
+    void deleteById(Long playlistId);
+    //void deleteAllBySongs(Song song);
 }

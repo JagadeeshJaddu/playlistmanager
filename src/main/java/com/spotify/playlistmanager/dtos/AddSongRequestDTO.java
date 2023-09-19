@@ -8,6 +8,5 @@ import lombok.Setter;
 public class AddSongRequestDTO {
     private String name;
     private Long artistId;
-    private Long albumId;
     private int duration;
 }

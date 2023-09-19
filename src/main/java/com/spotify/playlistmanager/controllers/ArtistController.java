@@ -2,7 +2,9 @@ package com.spotify.playlistmanager.controllers;
 
 import org.springframework.stereotype.Controller;
 import com.spotify.playlistmanager.dtos.AddArtistRequestDTO;
-import com.spotify.playlistmanager.dtos.AddArtistResponseDTO;
+import com.spotify.playlistmanager.dtos.EntityType;
+import com.spotify.playlistmanager.dtos.ResponseDTO;
+import com.spotify.playlistmanager.dtos.ResponseType;
 import com.spotify.playlistmanager.models.Artist;
 import com.spotify.playlistmanager.services.ArtistService;
 
@@ -14,14 +16,16 @@ public class ArtistController {
     {
         this.artistService = artistService;
     }
-    public AddArtistResponseDTO addArtist(AddArtistRequestDTO addArtistRequestDTO)
+    public ResponseDTO addArtist(AddArtistRequestDTO addArtistRequestDTO)
     {
         Artist artist;
         String name = addArtistRequestDTO.getName();
-        AddArtistResponseDTO addArtistResponseDTO = new AddArtistResponseDTO();
+        ResponseDTO addArtistResponseDTO = new ResponseDTO();
+        addArtistResponseDTO.setEntityType(EntityType.Artist);
+        addArtistResponseDTO.setResponseType(ResponseType.Addition);
         try{
             artist = artistService.addArtist(name);
-            addArtistResponseDTO.setId(artist.getId());
+            addArtistResponseDTO.setEntityId(artist.getId());
             addArtistResponseDTO.setStatus("SUCCESS");
         }
         catch(Exception e){

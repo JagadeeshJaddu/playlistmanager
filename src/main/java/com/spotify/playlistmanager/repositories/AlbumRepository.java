@@ -11,4 +11,6 @@ public interface AlbumRepository extends JpaRepository<Album,Long>{
     Optional<Album>  findByName(String name);
     //Album save(Album album);
     <S extends Album> S save(S Album);
+
+    //void deleteAllBySongs(Song song);
 }

@@ -2,11 +2,11 @@ package com.spotify.playlistmanager.controllers;
 
 import org.springframework.stereotype.Controller;
 import com.spotify.playlistmanager.dtos.CreatePlaylistRequestDTO;
-import com.spotify.playlistmanager.dtos.CreatePlaylistResponseDTO;
+import com.spotify.playlistmanager.dtos.EntityType;
 import com.spotify.playlistmanager.dtos.RemovePlaylistRequestDTO;
-import com.spotify.playlistmanager.dtos.RemovePlaylistResponseDTO;
+import com.spotify.playlistmanager.dtos.ResponseDTO;
+import com.spotify.playlistmanager.dtos.ResponseType;
 import com.spotify.playlistmanager.dtos.SongToPlaylistRequestDTO;
-import com.spotify.playlistmanager.dtos.SongToPlaylistResponseDTO;
 import com.spotify.playlistmanager.models.Playlist;
 import com.spotify.playlistmanager.services.PlaylistService;
 
@@ -19,14 +19,16 @@ public class PlaylistController {
         this.playlistService = playlistService;
     }
 
-    public CreatePlaylistResponseDTO createPlaylist(CreatePlaylistRequestDTO createPlaylistRequestDTO)
+    public ResponseDTO createPlaylist(CreatePlaylistRequestDTO createPlaylistRequestDTO)
     {
         Playlist playlist;
-        CreatePlaylistResponseDTO createPlaylistResponseDTO = new CreatePlaylistResponseDTO();
+        ResponseDTO createPlaylistResponseDTO = new ResponseDTO();
+        createPlaylistResponseDTO.setEntityType(EntityType.Playlist);
+        createPlaylistResponseDTO.setResponseType(ResponseType.Addition);
         String name = createPlaylistRequestDTO.getName();
         try{
             playlist = playlistService.createPlaylist(name);
-            createPlaylistResponseDTO.setId(playlist.getId());
+            createPlaylistResponseDTO.setEntityId(playlist.getId());
             createPlaylistResponseDTO.setStatus("SUCCESS");
         }
         catch(Exception e)
@@ -37,15 +39,17 @@ public class PlaylistController {
         return createPlaylistResponseDTO;
     }
 
-    public SongToPlaylistResponseDTO addSongToPlayList(SongToPlaylistRequestDTO songToPlaylistRequestDTO)
+    public ResponseDTO addSongToPlayList(SongToPlaylistRequestDTO songToPlaylistRequestDTO)
     {
         Playlist playlist;
         Long playlistId = songToPlaylistRequestDTO.getPlaylistId();
         Long songId = songToPlaylistRequestDTO.getSongId();
-        SongToPlaylistResponseDTO songToPlaylistResponseDTO = new SongToPlaylistResponseDTO();
+        ResponseDTO songToPlaylistResponseDTO = new ResponseDTO();
+        songToPlaylistResponseDTO.setEntityType(EntityType.Playlist);
+        songToPlaylistResponseDTO.setResponseType(ResponseType.Addition);
         try{
             playlist = playlistService.addSongToPlaylist(playlistId, songId);
-            songToPlaylistResponseDTO.setPlaylistId(playlist.getId());
+            songToPlaylistResponseDTO.setEntityId(playlist.getId());
             songToPlaylistResponseDTO.setStatus("SUCCESS");
         }
         catch(Exception e)
@@ -57,15 +61,17 @@ public class PlaylistController {
         return songToPlaylistResponseDTO;
     }
 
-    public SongToPlaylistResponseDTO removeSongFromPlaylist(SongToPlaylistRequestDTO songToPlaylistRequestDTO)
+    public ResponseDTO removeSongFromPlaylist(SongToPlaylistRequestDTO songToPlaylistRequestDTO)
     {
         Playlist playlist;
         Long playlistId = songToPlaylistRequestDTO.getPlaylistId();
         Long songId = songToPlaylistRequestDTO.getSongId();
-        SongToPlaylistResponseDTO songToPlaylistResponseDTO = new SongToPlaylistResponseDTO();
+        ResponseDTO songToPlaylistResponseDTO = new ResponseDTO();
+        songToPlaylistResponseDTO.setEntityType(EntityType.Playlist);
+        songToPlaylistResponseDTO.setResponseType(ResponseType.Removal);
         try{
             playlist = playlistService.removeSongFromPlaylist(playlistId, songId);
-            songToPlaylistResponseDTO.setPlaylistId(playlist.getId());
+            songToPlaylistResponseDTO.setEntityId(playlist.getId());
             songToPlaylistResponseDTO.setStatus("SUCCESS");
         }
         catch(Exception e)
@@ -76,10 +82,12 @@ public class PlaylistController {
         return songToPlaylistResponseDTO;
     }
 
-    public RemovePlaylistResponseDTO removePlaylist(RemovePlaylistRequestDTO removePlaylistRequestDTO)
+    public ResponseDTO removePlaylist(RemovePlaylistRequestDTO removePlaylistRequestDTO)
     {
         Long playlistId = removePlaylistRequestDTO.getPlaylistId();
-        RemovePlaylistResponseDTO removePlaylistResponseDTO = new RemovePlaylistResponseDTO();
+        ResponseDTO removePlaylistResponseDTO = new ResponseDTO();
+        removePlaylistResponseDTO.setEntityType(EntityType.Playlist);
+        removePlaylistResponseDTO.setResponseType(ResponseType.Removal);
         try
         {
             playlistService.removePlaylist(playlistId);

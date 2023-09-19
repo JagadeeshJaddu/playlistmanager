@@ -1,7 +1,8 @@
 package com.spotify.playlistmanager.services;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import com.spotify.playlistmanager.exceptions.PlaylistAlreadyExistException;
 import com.spotify.playlistmanager.exceptions.PlaylistDoesNotExistException;
@@ -58,7 +59,7 @@ public class PlaylistService {
         }
 
         Playlist playlist = playlistOptional.get();
-        List<Song> playlistSongs = playlist.getSongs();
+        Set<Song> playlistSongs = playlist.getSongs();
         playlistSongs.add(songOptional.get());
         playlist.setSongs(playlistSongs);
         playlist = playlistRepository.save(playlist);
@@ -78,11 +79,11 @@ public class PlaylistService {
         }
 
         Playlist playlist = playlistOptional.get();
-        List<Song> playlistSongs = playlist.getSongs();
+        Set<Song> playlistSongs = playlist.getSongs();
         Song song = songOptional.get();
         Optional<Long> isTrue = playlistSongs.stream().map(s -> s.getId()).filter(s -> (s==song.getId())).findFirst();
         if (isTrue.isPresent()) {
-            playlistSongs = playlistSongs.stream().filter(s -> (s.getId() != song.getId())).toList();
+            playlistSongs = playlistSongs.stream().filter(s -> (s.getId() != song.getId())).collect(Collectors.toSet());
         } else {
             throw new SongNotInPlaylistException();
         }

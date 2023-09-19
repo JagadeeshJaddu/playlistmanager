@@ -1,6 +1,6 @@
 package com.spotify.playlistmanager.models;
 
-import java.util.List;
+import java.util.Set;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
@@ -13,5 +13,5 @@ import lombok.Setter;
 public class Playlist extends BaseModel{
     private String name;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Song> songs;
+    private Set<Song> songs;
 }

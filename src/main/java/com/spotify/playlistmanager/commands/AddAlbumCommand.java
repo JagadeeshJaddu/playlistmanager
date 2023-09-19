@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import com.spotify.playlistmanager.controllers.AlbumController;
 import com.spotify.playlistmanager.dtos.AddAlbumRequestDTO;
-import com.spotify.playlistmanager.dtos.AddAlbumResponseDTO;
+import com.spotify.playlistmanager.dtos.ResponseDTO;
 
 @Component
 public class AddAlbumCommand implements Command{
@@ -35,7 +35,7 @@ public class AddAlbumCommand implements Command{
         addAlbumRequestDTO.setName(name);
         addAlbumRequestDTO.setArtistId(artistId);
 
-        AddAlbumResponseDTO addAlbumResponseDTO = albumController.addAlbum(addAlbumRequestDTO);
+        ResponseDTO addAlbumResponseDTO = albumController.addAlbum(addAlbumRequestDTO);
 
         System.out.println(addAlbumResponseDTO.getStatus());
     }

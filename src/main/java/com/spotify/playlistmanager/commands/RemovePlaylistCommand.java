@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import com.spotify.playlistmanager.controllers.PlaylistController;
 import com.spotify.playlistmanager.dtos.RemovePlaylistRequestDTO;
-import com.spotify.playlistmanager.dtos.RemovePlaylistResponseDTO;
+import com.spotify.playlistmanager.dtos.ResponseDTO;
 
 @Component
 public class RemovePlaylistCommand implements Command{
@@ -31,7 +31,7 @@ public class RemovePlaylistCommand implements Command{
         Long playlistId = Long.parseLong(inputWords.get(1));
         RemovePlaylistRequestDTO removePlaylistRequestDTO = new RemovePlaylistRequestDTO();
         removePlaylistRequestDTO.setPlaylistId(playlistId);
-        RemovePlaylistResponseDTO removePlaylistResponseDTO = playlistController.removePlaylist(removePlaylistRequestDTO);
+        ResponseDTO removePlaylistResponseDTO = playlistController.removePlaylist(removePlaylistRequestDTO);
         System.out.println(removePlaylistResponseDTO.getStatus());
         return ;
     }

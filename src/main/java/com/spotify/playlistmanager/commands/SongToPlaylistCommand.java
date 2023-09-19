@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import com.spotify.playlistmanager.controllers.PlaylistController;
+import com.spotify.playlistmanager.dtos.ResponseDTO;
 import com.spotify.playlistmanager.dtos.SongToPlaylistRequestDTO;
-import com.spotify.playlistmanager.dtos.SongToPlaylistResponseDTO;
 
 @Component
 public class SongToPlaylistCommand implements Command{
@@ -33,7 +33,7 @@ public class SongToPlaylistCommand implements Command{
         SongToPlaylistRequestDTO songToPlaylistRequestDTO = new SongToPlaylistRequestDTO();
         songToPlaylistRequestDTO.setPlaylistId(playlistId);
         songToPlaylistRequestDTO.setSongId(songId);
-        SongToPlaylistResponseDTO songToPlaylistResponseDTO = playlistController.addSongToPlayList(songToPlaylistRequestDTO);
+        ResponseDTO songToPlaylistResponseDTO = playlistController.addSongToPlayList(songToPlaylistRequestDTO);
         System.out.println(songToPlaylistResponseDTO.getStatus());
         return ;
     }

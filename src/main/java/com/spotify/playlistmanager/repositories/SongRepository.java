@@ -14,4 +14,7 @@ public interface SongRepository extends JpaRepository<Song,Long>{
     List<Song> findByArtist(Artist artist);
     //Song save(Song song);
     <S extends Song> S save(S Song);
+
+    void deleteById(Long songId);
+    void delete(Song song);
 }

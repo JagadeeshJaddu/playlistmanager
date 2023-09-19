@@ -2,7 +2,10 @@ package com.spotify.playlistmanager.controllers;
 
 import org.springframework.stereotype.Controller;
 import com.spotify.playlistmanager.dtos.AddSongRequestDTO;
-import com.spotify.playlistmanager.dtos.AddSongResponseDTO;
+import com.spotify.playlistmanager.dtos.EntityType;
+import com.spotify.playlistmanager.dtos.RemoveSongRequestDTO;
+import com.spotify.playlistmanager.dtos.ResponseDTO;
+import com.spotify.playlistmanager.dtos.ResponseType;
 import com.spotify.playlistmanager.models.Song;
 import com.spotify.playlistmanager.services.SongService;
 
@@ -14,16 +17,17 @@ public class SongController {
         this.songService = songService;
     }
 
-    public AddSongResponseDTO addSong(AddSongRequestDTO addSongRequestDTO) {
+    public ResponseDTO addSong(AddSongRequestDTO addSongRequestDTO) {
         Song song;
-        AddSongResponseDTO addSongResponseDTO = new AddSongResponseDTO();
+        ResponseDTO addSongResponseDTO = new ResponseDTO();
         String name = addSongRequestDTO.getName();
         Long artistId = addSongRequestDTO.getArtistId();
-        Long albumId = addSongRequestDTO.getAlbumId();
         int duration = addSongRequestDTO.getDuration();
+        addSongResponseDTO.setEntityType(EntityType.Song);
+        addSongResponseDTO.setResponseType(ResponseType.Addition);
         try {
-            song = songService.addSong(name, artistId, albumId,duration);
-            addSongResponseDTO.setSongId(song.getId());
+            song = songService.addSong(name, artistId,duration);
+            addSongResponseDTO.setEntityId(song.getId());
             addSongResponseDTO.setStatus("SUCCESS");
         } catch (Exception e) {
             addSongResponseDTO.setStatus("FAILURE");
@@ -32,5 +36,23 @@ public class SongController {
         }
 
         return addSongResponseDTO;
+    }
+
+    public ResponseDTO removeSong(RemoveSongRequestDTO removeSongRequestDTO)
+    {
+        Long songId = removeSongRequestDTO.getSongId();
+        ResponseDTO removeSongResponseDTO = new ResponseDTO();
+        removeSongResponseDTO.setEntityType(EntityType.Song);
+        removeSongResponseDTO.setResponseType(ResponseType.Removal);
+        try{
+            songService.removeSong(songId);
+            removeSongResponseDTO.setStatus("SUCCESS");
+        }
+        catch(Exception e)
+        {
+            removeSongResponseDTO.setStatus("FAILURE");
+            removeSongResponseDTO.setMessage(e.getMessage());
+        }
+        return removeSongResponseDTO;
     }
 }

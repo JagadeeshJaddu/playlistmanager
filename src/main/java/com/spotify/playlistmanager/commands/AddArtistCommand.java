@@ -2,12 +2,10 @@ package com.spotify.playlistmanager.commands;
 
 import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.stereotype.Component;
-
 import com.spotify.playlistmanager.controllers.ArtistController;
 import com.spotify.playlistmanager.dtos.AddArtistRequestDTO;
-import com.spotify.playlistmanager.dtos.AddArtistResponseDTO;
+import com.spotify.playlistmanager.dtos.ResponseDTO;
 
 @Component
 public class AddArtistCommand implements Command{
@@ -32,7 +30,7 @@ public class AddArtistCommand implements Command{
         List<String> inputWords = Arrays.stream(input.split(" ")).toList();
         AddArtistRequestDTO addArtistRequestDTO = new AddArtistRequestDTO();
         addArtistRequestDTO.setName(inputWords.get(1));
-        AddArtistResponseDTO addArtistResponseDTO = artistController.addArtist(addArtistRequestDTO);
+        ResponseDTO addArtistResponseDTO = artistController.addArtist(addArtistRequestDTO);
         System.out.println(addArtistResponseDTO.getStatus());
     }
     

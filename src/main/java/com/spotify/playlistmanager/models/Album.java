@@ -1,7 +1,9 @@
 package com.spotify.playlistmanager.models;
 
 import java.util.List;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -14,6 +16,6 @@ public class Album extends BaseModel{
     private String name;
     @ManyToOne
     private Artist artist;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER , mappedBy = "album", cascade = CascadeType.REMOVE)
     private List<Song> songs;
 }
