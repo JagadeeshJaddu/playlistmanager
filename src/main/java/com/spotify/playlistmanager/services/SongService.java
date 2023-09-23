@@ -4,7 +4,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.spotify.playlistmanager.exceptions.ArtistDoesNotExistException;
 import com.spotify.playlistmanager.exceptions.SongAlreadyExistsException;
-import com.spotify.playlistmanager.exceptions.SongDoesNotExistException;
 import com.spotify.playlistmanager.models.Artist;
 import com.spotify.playlistmanager.models.Song;
 import com.spotify.playlistmanager.repositories.AlbumRepository;
@@ -50,22 +49,5 @@ public class SongService {
         song = songRepository.save(song);
 
         return song;
-    }
-
-    public void removeSong(Long songId) throws SongDoesNotExistException
-    {
-        Optional<Song> songOptional = songRepository.findById(songId);
-        if(songOptional.isEmpty())
-        {
-            throw new SongDoesNotExistException();
-        }
-
-        Song song = songOptional.get();
-        Long Id = song.getId();
-        songRepository.deleteById(Id);
-        //albumRepository.deleteAllBySongs(song);
-        //playlistRepository.deleteAllBySongs(song);
-        //playlistRepository.deleteAllBySongId(song);
-        return ;
     }
 }

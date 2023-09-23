@@ -11,8 +11,7 @@ public class CommandRegistry {
     public CommandRegistry(AddSongCommand addSongCommand, AddArtistCommand addArtistCommand,
             AddAlbumCommand addAlbumCommand, CreatePlaylistCommand createPlaylistCommand,
             SongToPlaylistCommand songToPlaylistCommand, RemoveSongFromPlaylistCommand removeSongFromPlaylistCommand,
-            RemovePlaylistCommand removePlaylistCommand, AddSongToAlbumCommand addSongToAlbumCommand,
-            RemoveSongCommand removeSongCommand) {
+            RemovePlaylistCommand removePlaylistCommand, AddSongToAlbumCommand addSongToAlbumCommand) {
         this.commandList = new ArrayList<>();
         commandList.add(addSongCommand);
         commandList.add(addArtistCommand);
@@ -22,7 +21,6 @@ public class CommandRegistry {
         commandList.add(removeSongFromPlaylistCommand);
         commandList.add(removePlaylistCommand);
         commandList.add(addSongToAlbumCommand);
-        commandList.add(removeSongCommand);
     }
 
     public void excecute(String input) {

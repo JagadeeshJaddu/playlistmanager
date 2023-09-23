@@ -3,7 +3,6 @@ package com.spotify.playlistmanager.controllers;
 import org.springframework.stereotype.Controller;
 import com.spotify.playlistmanager.dtos.AddSongRequestDTO;
 import com.spotify.playlistmanager.dtos.EntityType;
-import com.spotify.playlistmanager.dtos.RemoveSongRequestDTO;
 import com.spotify.playlistmanager.dtos.ResponseDTO;
 import com.spotify.playlistmanager.dtos.ResponseType;
 import com.spotify.playlistmanager.models.Song;
@@ -38,21 +37,4 @@ public class SongController {
         return addSongResponseDTO;
     }
 
-    public ResponseDTO removeSong(RemoveSongRequestDTO removeSongRequestDTO)
-    {
-        Long songId = removeSongRequestDTO.getSongId();
-        ResponseDTO removeSongResponseDTO = new ResponseDTO();
-        removeSongResponseDTO.setEntityType(EntityType.Song);
-        removeSongResponseDTO.setResponseType(ResponseType.Removal);
-        try{
-            songService.removeSong(songId);
-            removeSongResponseDTO.setStatus("SUCCESS");
-        }
-        catch(Exception e)
-        {
-            removeSongResponseDTO.setStatus("FAILURE");
-            removeSongResponseDTO.setMessage(e.getMessage());
-        }
-        return removeSongResponseDTO;
-    }
 }
