@@ -20,24 +20,21 @@ public class AlbumService {
     private AlbumRepository albumRepository;
     private SongRepository songRepository;
 
-    public AlbumService(AlbumRepository albumRepository, ArtistRepository artistRepository, SongRepository songRepository)
-    {
+    public AlbumService(AlbumRepository albumRepository, ArtistRepository artistRepository,
+            SongRepository songRepository) {
         this.artistRepository = artistRepository;
         this.albumRepository = albumRepository;
         this.songRepository = songRepository;
     }
 
-    public Album addAlbum(String name, Long artistId) throws ArtistDoesNotExistException,AlbumAlreadyExistException
-    {
+    public Album addAlbum(String name, Long artistId) throws ArtistDoesNotExistException, AlbumAlreadyExistException {
         Optional<Artist> artistOptional = artistRepository.findById(artistId);
-        if(artistOptional.isEmpty())
-        {
+        if (artistOptional.isEmpty()) {
             throw new ArtistDoesNotExistException();
         }
 
         Optional<Album> albumOptional = albumRepository.findByName(name);
-        if(albumOptional.isPresent())
-        {
+        if (albumOptional.isPresent()) {
             throw new AlbumAlreadyExistException();
         }
 
@@ -50,17 +47,15 @@ public class AlbumService {
         return album;
     }
 
-    public Album addSongToAlbum(Long albumId, Long songId) throws AlbumDoesNotExistException, SongDoesNotExistException
-    {
+    public Album addSongToAlbum(Long albumId, Long songId)
+            throws AlbumDoesNotExistException, SongDoesNotExistException {
         Optional<Album> albumOptional = albumRepository.findById(albumId);
-        if(albumOptional.isEmpty())
-        {
+        if (albumOptional.isEmpty()) {
             throw new AlbumDoesNotExistException();
         }
 
         Optional<Song> songOptional = songRepository.findById(songId);
-        if(songOptional.isEmpty())
-        {
+        if (songOptional.isEmpty()) {
             throw new SongDoesNotExistException();
         }
 

@@ -10,17 +10,14 @@ import com.spotify.playlistmanager.repositories.ArtistRepository;
 public class ArtistService {
     private ArtistRepository artistRepository;
 
-    public ArtistService(ArtistRepository artistRepository)
-    {
+    public ArtistService(ArtistRepository artistRepository) {
         this.artistRepository = artistRepository;
     }
 
-    public Artist addArtist(String name) throws ArtistAlreadyExistException
-    {
+    public Artist addArtist(String name) throws ArtistAlreadyExistException {
         Optional<Artist> artistOptional = artistRepository.findByName(name);
 
-        if(artistOptional.isPresent())
-        {
+        if (artistOptional.isPresent()) {
             throw new ArtistAlreadyExistException();
         }
 

@@ -35,18 +35,18 @@ public class PlaylistService {
 
         return playlist;
     }
-    public void removePlaylist(Long playlistId) throws PlaylistDoesNotExistException
-    {
+
+    public void removePlaylist(Long playlistId) throws PlaylistDoesNotExistException {
         Optional<Playlist> playlistOptional = playlistRepository.findById(playlistId);
-        if(playlistOptional.isEmpty())
-        {
+        if (playlistOptional.isEmpty()) {
             throw new PlaylistDoesNotExistException();
         }
 
         playlistRepository.deleteById(playlistId);
 
-        return ;
+        return;
     }
+
     public Playlist addSongToPlaylist(Long playlistId, Long songId)
             throws SongDoesNotExistException, PlaylistDoesNotExistException {
         Optional<Song> songOptional = songRepository.findById(songId);
@@ -81,9 +81,10 @@ public class PlaylistService {
         Playlist playlist = playlistOptional.get();
         List<Song> playlistSongs = playlist.getSongs();
         Song song = songOptional.get();
-        Optional<Long> isTrue = playlistSongs.stream().map(s -> s.getId()).filter(s -> (s==song.getId())).findFirst();
+        Optional<Long> isTrue = playlistSongs.stream().map(s -> s.getId()).filter(s -> (s == song.getId())).findFirst();
         if (isTrue.isPresent()) {
-            playlistSongs = playlistSongs.stream().filter(s -> (s.getId() != song.getId())).collect(Collectors.toList());
+            playlistSongs = playlistSongs.stream().filter(s -> (s.getId() != song.getId()))
+                    .collect(Collectors.toList());
         } else {
             throw new SongNotInPlaylistException();
         }

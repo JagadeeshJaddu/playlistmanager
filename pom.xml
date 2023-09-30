@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.spotify</groupId>
 	<artifactId>playlistmanager</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.5</version>
 	<name>playlistmanager</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

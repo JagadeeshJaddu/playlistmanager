@@ -15,15 +15,11 @@ import com.spotify.playlistmanager.repositories.SongRepository;
 public class SongService {
     private SongRepository songRepository;
     private ArtistRepository artistRepository;
-    //private AlbumRepository albumRepository;
-    //private PlaylistRepository playlistRepository;
 
     public SongService(SongRepository songRepository, ArtistRepository artistRepository, AlbumRepository albumRepository, PlaylistRepository playlistRepository)
     {
         this.songRepository = songRepository;
         this.artistRepository = artistRepository;
-        //this.albumRepository = albumRepository;
-        //this.playlistRepository = playlistRepository;
     }
     public Song addSong(String name, Long artistId,int duration) throws ArtistDoesNotExistException,SongAlreadyExistsException
     {
