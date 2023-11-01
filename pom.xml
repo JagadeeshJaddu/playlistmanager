@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.spotify</groupId>
 	<artifactId>playlistmanager</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.9</version>
 	<name>playlistmanager</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -48,6 +48,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-annotations</artifactId>
+    		<version>2.15.3</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

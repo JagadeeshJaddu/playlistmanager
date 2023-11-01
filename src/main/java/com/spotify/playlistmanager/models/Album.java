@@ -18,4 +18,16 @@ public class Album extends BaseModel{
     private Artist artist;
     @OneToMany(fetch = FetchType.EAGER , mappedBy = "album", cascade = CascadeType.REMOVE)
     private List<Song> songs;
+
+    /*@JsonManagedReference
+    public List<Song> getSongs()
+    {
+        return this.songs;
+    }
+
+    @JsonManagedReference
+    public Artist getArtist()
+    {
+        return this.artist;
+    }*/
 }

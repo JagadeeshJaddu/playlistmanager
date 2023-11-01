@@ -65,7 +65,7 @@ public class SongService {
             throw new AlbumDoesNotExistException();
         }
         Album album = albumOptional.get();
-        List<Song> songs = songRepository.findByAlbum(album);
+        List<Song> songs = songRepository.findAllByAlbum(album);
         return songs;
     }
 
