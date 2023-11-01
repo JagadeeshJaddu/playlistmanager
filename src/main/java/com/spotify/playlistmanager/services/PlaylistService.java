@@ -92,4 +92,10 @@ public class PlaylistService {
         playlist = playlistRepository.save(playlist);
         return playlist;
     }
+
+    public List<Playlist> findAllPlaylists()
+    {
+        List<Playlist> playlists = playlistRepository.findAll();
+        return playlists;
+    }
 }

@@ -69,4 +69,22 @@ public class AlbumService {
 
         return album;
     }
+
+    public List<Album> findAlbumByArtist(Long artistId) throws ArtistDoesNotExistException
+    {
+        Optional<Artist> artistOptional = artistRepository.findById(artistId);
+        if(artistOptional.isEmpty())
+        {
+            throw new ArtistDoesNotExistException();
+        }
+        Artist artist = artistOptional.get();
+        List<Album> albums = albumRepository.findByArtist(artist);
+        return albums;
+    }
+
+    public List<Album> findAllAlbums()
+    {
+        List<Album> albums = albumRepository.findAll();
+        return albums;
+    }
 }

@@ -1,5 +1,6 @@
 package com.spotify.playlistmanager.services;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.spotify.playlistmanager.exceptions.ArtistAlreadyExistException;
@@ -27,5 +28,11 @@ public class ArtistService {
         artist = artistRepository.save(artist);
 
         return artist;
+    }
+
+    public List<Artist> findAllArtists()
+    {
+        List<Artist> artists = artistRepository.findAll();
+        return artists;
     }
 }
