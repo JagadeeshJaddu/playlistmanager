@@ -1,7 +1,7 @@
 package com.spotify.playlistmanager.models;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Document("songs")
 public class Song extends BaseModel{
     private String name;
     @ManyToOne

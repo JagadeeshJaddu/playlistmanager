@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import com.spotify.playlistmanager.exceptions.AlbumDoesNotExistException;
 import com.spotify.playlistmanager.exceptions.ArtistDoesNotExistException;
 import com.spotify.playlistmanager.exceptions.SongAlreadyExistsException;
+import com.spotify.playlistmanager.exceptions.SongDoesNotExistException;
 import com.spotify.playlistmanager.models.Album;
 import com.spotify.playlistmanager.models.Artist;
 import com.spotify.playlistmanager.models.Song;
 import com.spotify.playlistmanager.repositories.AlbumRepository;
 import com.spotify.playlistmanager.repositories.ArtistRepository;
+import com.spotify.playlistmanager.repositories.SongDeleteRepo;
 import com.spotify.playlistmanager.repositories.SongRepository;
 
 @Service
@@ -18,12 +20,14 @@ public class SongService {
     private SongRepository songRepository;
     private ArtistRepository artistRepository;
     private AlbumRepository albumRepository;
+    private SongDeleteRepo songDeleteRepo;
 
-    public SongService(SongRepository songRepository, ArtistRepository artistRepository, AlbumRepository albumRepository)
+    public SongService(SongRepository songRepository, ArtistRepository artistRepository, AlbumRepository albumRepository, SongDeleteRepo songDeleteRepo)
     {
         this.songRepository = songRepository;
         this.artistRepository = artistRepository;
         this.albumRepository = albumRepository;
+        this.songDeleteRepo = songDeleteRepo;
     }
     public Song addSong(String name, Long artistId,int duration) throws ArtistDoesNotExistException,SongAlreadyExistsException
     {
@@ -79,5 +83,16 @@ public class SongService {
         Artist artist = artistOptional.get();
         List<Song> songs = songRepository.findByArtist(artist);
         return songs;
+    }
+
+    public void deleteSong(Long songId) throws SongDoesNotExistException
+    {
+        Optional<Song> songOptional = songRepository.findById(songId);
+        if(songOptional.isEmpty())
+        {
+            throw new SongDoesNotExistException();
+        }
+        songDeleteRepo.deleteSong(songId);
+        return ;
     }
 }

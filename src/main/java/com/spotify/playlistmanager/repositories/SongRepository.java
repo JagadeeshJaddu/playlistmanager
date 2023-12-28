@@ -13,9 +13,8 @@ public interface SongRepository extends JpaRepository<Song,Long>{
     Optional<Song> findById(Long id);
     Optional<Song> findByName(String name);
     List<Song> findByArtist(Artist artist);
-    /*@Query(value = "select * from song where album_id = ?1" , nativeQuery = true)
-    List<Song> findByAlbum(Long albumId);*/
     List<Song> findAllByAlbum(Album album);
     List<Song> findAll();
     <S extends Song> S save(S Song);
+    void deleteById(Long songId);
 }
